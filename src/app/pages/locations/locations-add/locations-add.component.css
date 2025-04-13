@@ -1,0 +1,47 @@
+.location-form {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.location-form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.location-form input,
+.location-form textarea,
+.location-form select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.location-form .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btn-save {
+    background-color: #64d2c6;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #56b8b0;
+}
+
+.btn-cancel {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #e63939;
+}

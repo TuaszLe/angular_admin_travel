@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Quản lý danh mục địa điểm</h2>
+  <button class="btn btn-add" routerLink="/admin/categories/add">Thêm danh mục</button>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên danh mục</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>
+          <button class="btn btn-edit" [routerLink]="['/admin/categories/edit', category.id]">Sửa</button>
+          <button class="btn btn-delete" (click)="deleteCategory(category.id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

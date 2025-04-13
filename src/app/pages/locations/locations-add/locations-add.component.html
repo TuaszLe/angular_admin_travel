@@ -1,0 +1,39 @@
+<div class="container location-form">
+    <h2>Thêm Địa Điểm Du Lịch</h2>
+    <form (submit)="saveLocation()">
+        <label for="name">Tên địa điểm:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="description">Mô tả:</label>
+        <textarea id="description" name="description" required></textarea>
+        
+        <label for="image">Hình ảnh (URL):</label>
+        <input type="text" id="image" name="image">
+        
+        <label for="latitude">Vĩ độ:</label>
+        <input type="number" step="0.00000001" id="latitude" name="latitude" required>
+        
+        <label for="longitude">Kinh độ:</label>
+        <input type="number" step="0.00000001" id="longitude" name="longitude" required>
+        
+        
+        <label for="province">Tỉnh thành:</label>
+        <select id="province" name="province">
+            <option value="1">Hà Nội</option>
+            <option value="2">Hồ Chí Minh</option>
+            <option value="3">Đà Nẵng</option>
+        </select>
+        
+        <label for="category">Danh mục:</label>
+        <select id="category" name="category">
+            <option value="1">Bãi biển</option>
+            <option value="2">Núi rừng</option>
+            <option value="3">Di tích lịch sử</option>
+        </select>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-save">Lưu</button>
+            <button type="button" class="btn btn-cancel" routerLink="/admin/locations">Hủy</button>
+        </div>
+    </form>
+</div>

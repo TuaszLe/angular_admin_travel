@@ -1,0 +1,62 @@
+/* ===================== */
+/* CSS dành riêng cho trang thêm danh mục */
+/* ===================== */
+.category-form {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.category-form input {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.category-form .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.category-form .btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.category-form .btn-save {
+    background-color: #64d2c6;
+    color: white;
+}
+
+.category-form .btn-save:hover {
+    background-color: #56b8b0;
+}
+
+.category-form .btn-cancel {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.category-form .btn-cancel:hover {
+    background-color: #e63939;
+}
