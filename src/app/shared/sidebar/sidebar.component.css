@@ -1,7 +1,7 @@
 /* CSS Sidebar */
 .sidebar {
     width: 250px;
-    background: #ffffff;
+    background: #e5e5e5;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -14,11 +14,15 @@
     align-items: center;
 }
 
-.sidebar img {
-    width: 100px;
+/* Logo Style */
+.sidebar .logo {
+    font-size: 32px; /* Large font size */
+    font-weight: bold;
+    color: #006400; /* Dark green color */
     margin-bottom: 30px;
 }
 
+/* Link Style */
 .sidebar a {
     display: block;
     width: 100%;
@@ -40,6 +44,7 @@
     border-color: #64d2c6;
 }
 
+/* Logout Style */
 .sidebar .logout {
     margin-top: 350px;
     background-color: #ff4d4d;

@@ -1,63 +1,104 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-
-declare var Goong: any; // Khai báo GoongMap
 
 @Component({
   selector: 'app-locations-edit',
   standalone: true,
   templateUrl: './locations-edit.component.html',
   styleUrls: ['./locations-edit.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    FormsModule
+  ]
 })
 export class LocationsEditComponent implements OnInit {
-  location = {
-    id: 1,
-    name: 'Vịnh Hạ Long',
-    description: 'Vịnh Hạ Long là một trong những danh lam thắng cảnh nổi tiếng của Việt Nam.',
-    image: 'https://example.com/halong.jpg',
-    latitude: 20.9711,
-    longitude: 107.0448,
-    province: '3',
-    category: '1'
+  locationId: number | null = null;
+  location: any = {
+    id: null,
+    name: '',
+    description: '',
+    latitude: null,
+    longitude: null,
+    province: null,
+    categories: []
   };
+  imageUrls: string = '';
+  provinces: any[] = [];
+  categories: any[] = [];
+  errorMessage: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.loadMap();
-  }
+    this.locationId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.locationId) {
+      this.loadLocation(this.locationId);
+    }
 
-  loadMap(): void {
-    // Tạo bản đồ GoongMap
-    const map = new Goong.Map({
-      container: 'map', // ID của div chứa bản đồ
-      center: [this.location.longitude, this.location.latitude], // Vị trí ban đầu
-      zoom: 15
+    this.http.get<any[]>('http://localhost:8080/locations').subscribe(locations => {
+      this.provinces = Array.from(
+        new Map(locations.map(l => [l.province.id, l.province])).values()
+      );
     });
 
-    // Tạo marker tại vị trí hiện tại của địa điểm
-    const marker = new Goong.Marker()
-      .setLngLat([this.location.longitude, this.location.latitude])
-      .addTo(map);
-
-    // Cập nhật tọa độ khi người dùng kéo marker
-    marker.on('dragend', (event: any) => {
-      const newLat = event.target.getLngLat().lat;
-      const newLng = event.target.getLngLat().lng;
-      this.location.latitude = newLat;
-      this.location.longitude = newLng;
-
-      // Cập nhật lại giá trị trong các input
-      (<HTMLInputElement>document.getElementById('latitude')).value = newLat.toString();
-      (<HTMLInputElement>document.getElementById('longitude')).value = newLng.toString();
+    this.http.get<any[]>('http://localhost:8080/categories').subscribe(categories => {
+      this.categories = categories;
     });
   }
 
-  saveLocation() {
-    console.log('Location updated', this.location);
-    this.router.navigate(['/admin/locations']);
+  loadLocation(id: number): void {
+    this.http.get<any>(`http://localhost:8080/locations/${id}`).subscribe({
+      next: (data) => {
+        this.location = {
+          ...data,
+          categories: data.categories.map((cat: any) => ({ id: cat.id, name: cat.name }))
+        };
+        this.imageUrls = data.images?.map((img: any) => img.image_url).join('\n') || '';
+      },
+      error: (err) => {
+        console.error('Lỗi khi tải địa điểm:', err);
+        this.errorMessage = 'Không thể tải dữ liệu địa điểm.';
+      }
+    });
+  }
+
+  saveLocation(): void {
+    const imageList = this.imageUrls
+      .split('\n')
+      .map(url => url.trim())
+      .filter(url => url !== '')
+      .map(url => ({ id: null, image_url: url }));
+
+    const updatedLocation = {
+      location: {
+        id: this.location.id,
+        name: this.location.name,
+        description: this.location.description,
+        latitude: this.location.latitude,
+        longitude: this.location.longitude,
+        province: this.location.province,
+        categories: this.location.categories.map((c: any) => ({ id: c.id, name: c.name }))
+      },
+      images: imageList
+    };
+
+    this.http.put(`http://localhost:8080/locations/admin/update/${this.locationId}`, updatedLocation)
+      .subscribe({
+        next: () => {
+          console.log('Cập nhật thành công');
+          this.router.navigate(['/admin/locations']);
+        },
+        error: (err) => {
+          console.error('Lỗi khi cập nhật địa điểm:', err);
+          this.errorMessage = 'Không thể cập nhật địa điểm.';
+        }
+      });
   }
 }

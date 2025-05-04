@@ -42,6 +42,19 @@ export class LocationsComponent implements OnInit {
 
   // Phương thức xóa địa điểm
   deleteLocation(id: number): void {
-    this.locations = this.locations.filter(location => location.id !== id);
+    if (!confirm('Bạn có chắc muốn xoá địa điểm này?')) return;
+  
+    this.locationService.deleteLocation(id).subscribe({
+      next: () => {
+        // Xoá thành công thì cập nhật danh sách
+        this.locations = this.locations.filter(location => location.id !== id);
+        console.log(`Đã xoá địa điểm ID: ${id}`);
+      },
+      error: (err) => {
+        console.error('Lỗi khi xoá địa điểm:', err);
+        this.errorMessage = 'Không thể xoá địa điểm. Vui lòng thử lại.';
+      }
+    });
   }
+  
 }

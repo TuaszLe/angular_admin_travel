@@ -1,15 +1,14 @@
 <div class="container">
-    <h2>Sửa Danh Mục</h2>
-    <div class="category-form">
-      <form (submit)="saveCategory()">
-        <label for="name">Tên danh mục:</label>
-        <input type="text" id="name" [(ngModel)]="category.name" name="name" required>
-  
-        <div class="form-actions">
-          <button type="submit" class="btn btn-save">Lưu</button>
-          <button type="button" class="btn btn-cancel" routerLink="/admin/categories">Hủy</button>
-        </div>
-      </form>
-    </div>
+  <h2>Sửa Danh Mục</h2>
+  <div class="category-form">
+    <form (submit)="saveCategory()">
+      <label for="name">Tên danh mục:</label>
+      <input type="text" id="name" [(ngModel)]="category.name" name="name" required>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-save">Lưu</button>
+        <button type="button" class="btn btn-cancel" routerLink="/admin/categories">Hủy</button>
+      </div>
+    </form>
   </div>
-  
+</div>

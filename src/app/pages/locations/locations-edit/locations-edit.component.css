@@ -1,17 +1,20 @@
+/* Container chứa form sửa địa điểm */
 .location-form {
     max-width: 600px;
     margin: 20px auto;
-    background: #ffffff;
+    background: #e5e5e5;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Các label trong form */
 .location-form label {
     margin-top: 10px;
     font-weight: bold;
 }
 
+/* Các input, textarea, select trong form */
 .location-form input,
 .location-form textarea,
 .location-form select {
@@ -22,26 +25,31 @@
     margin-top: 5px;
 }
 
+/* Phần button trong form */
 .location-form .form-actions {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
 }
 
+/* Nút Lưu */
 .btn-save {
     background-color: #64d2c6;
     color: white;
 }
 
+/* Hover nút Lưu */
 .btn-save:hover {
     background-color: #56b8b0;
 }
 
+/* Nút Hủy */
 .btn-cancel {
     background-color: #ff4d4d;
     color: white;
 }
 
+/* Hover nút Hủy */
 .btn-cancel:hover {
     background-color: #e63939;
 }

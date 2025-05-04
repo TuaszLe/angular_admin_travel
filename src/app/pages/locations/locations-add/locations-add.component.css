@@ -1,47 +1,134 @@
-.location-form {
-    max-width: 600px;
-    margin: 20px auto;
-    background: #ffffff;
+/* General Container */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.location-form label {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.location-form input,
-.location-form textarea,
-.location-form select {
-    padding: 8px;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Form Section */
+  .category-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Input Fields and Selects */
+  label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input, select, textarea {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
     width: 100%;
-    margin-top: 5px;
-}
-
-.location-form .form-actions {
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: #3b8ed3;
+    outline: none;
+  }
+  
+  /* Form Actions (Buttons) */
+  .form-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
-}
-
-.btn-save {
-    background-color: #64d2c6;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-save {
+    background-color: #4CAF50;
     color: white;
-}
-
-.btn-save:hover {
-    background-color: #56b8b0;
-}
-
-.btn-cancel {
-    background-color: #ff4d4d;
+  }
+  
+  .btn-save:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-cancel {
+    background-color: #f44336;
     color: white;
-}
+  }
+  
+  .btn-cancel:hover {
+    background-color: #e53935;
+  }
+  
+  /* Map Section */
+  #map {
+    width: 100%;  /* Đảm bảo chiều rộng chiếm hết không gian */
+    height: 60vh;  /* Chiều cao chiếm 60% chiều cao màn hình */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  /* Đảm bảo container có chiều cao đầy đủ */
+  }
+  
+  .category-form {
+    flex: 1;  /* Giúp form chiếm hết không gian */
+  }
 
-.btn-cancel:hover {
-    background-color: #e63939;
-}
+  /* CSS cho phần Chọn danh mục với khung bên ngoài */
+.category-box {
+    padding: 20px;
+    border: 2px solid #ddd;  
+    background-color: #f9f9f9;  /* Màu nền nhẹ cho khung */
+    border-radius: 8px;  /* Bo góc cho khung */
+    margin-bottom: 20px;  /* Khoảng cách dưới phần Chọn danh mục */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo bóng nhẹ cho khung */
+  }
+  
+  /* Các checkbox trong khung */
+  .category-box input {
+    margin-right: 10px;
+  }
+
+ /* Căn chỉnh tên danh mục */
+    .category-box label {
+    font-size: 14px;
+    color: #333;
+    display: inline-block; /* Giúp label thẳng hàng với checkbox */
+  }
+  
+
+  
+  
+  
+  /* 
+  #map {
+    flex: 3;  /* Đảm bảo bản đồ chiếm 3 phần không gian còn lại 
+  } 
+  */
+  

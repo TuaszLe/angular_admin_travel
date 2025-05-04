@@ -2,7 +2,6 @@
   <h2>Quản lý địa điểm du lịch</h2>
   <button class="btn btn-add" routerLink="/admin/locations/add">Thêm địa điểm</button>
   
-  <!-- Hiển thị lỗi nếu có -->
   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   
   <table>
@@ -11,8 +10,6 @@
         <th>ID</th>
         <th>Tên địa điểm</th>
         <th>Mô tả</th>
-        <th>Vĩ độ</th>
-        <th>Kinh độ</th>
         <th>Tỉnh</th>
         <th>Danh mục</th>
         <th>Hình ảnh</th>
@@ -24,18 +21,14 @@
         <td>{{ location.id }}</td>
         <td>{{ location.name }}</td>
         <td>{{ location.description || 'Không có mô tả' }}</td>
-        <td>{{ location.latitude }}</td>
-        <td>{{ location.longitude }}</td>
         <td>{{ location.province?.name || 'Chưa có tỉnh' }}</td>
         
-        <!-- Hiển thị các danh mục -->
         <td>
           <ul>
             <li *ngFor="let category of location.categories">{{ category.name }}</li>
           </ul>
         </td>
 
-        <!-- Hiển thị hình ảnh nếu có -->
         <td>
           <div *ngIf="location.images && location.images.length > 0">
             <img *ngFor="let image of location.images" [src]="image.image_url" alt="{{ location.name }}" width="100">

@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 
+import { CategoriesEditComponent } from './pages/categories/categories-edit/categories-edit.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
 
