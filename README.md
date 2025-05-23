@@ -15,9 +15,8 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ##
 admin_travel/
-=======
-  admin_travel/
->>>>>>> b4286458b86b7dc8c8a72a90ce4b1d5044d784db
+
+```bash
 │-- src/
 │   ├── app/
 │   │   ├── auth/
@@ -50,6 +49,8 @@ admin_travel/
 │   │   ├── app.module.ts
 │   ├── assets/
 │   ├── styles.css
+```
+
 <<<<<<< HEAD
 
 =======
