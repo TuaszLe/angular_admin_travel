@@ -1,38 +1,49 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // ✅ Import FormsModule
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router'; // Import RouterModule
+import { AuthService } from '../../services/auth.service';
+
 
 
 @Component({
   selector: 'app-register',
-  standalone: true, // ✅ Component độc lập
-  imports: [FormsModule, RouterModule], // Thêm RouterModule vào đây
+  standalone: true, 
+  imports: [FormsModule, RouterModule,CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   username: string = '';
+  email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  email: string = '';
-  errorMessage: string = '';
+  successMessage: string = ''; // Thông báo thành công
+  errorMessage: string = '';   // Thông báo lỗi (nếu cần)
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  onRegister() {
+  onSubmit() {
     if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Mật khẩu xác nhận không khớp!';
+      this.errorMessage = 'Mật khẩu và xác nhận mật khẩu không khớp!';
       return;
     }
 
-    const newUser = { username: this.username, password: this.password, email: this.email };
-    localStorage.setItem(this.username, JSON.stringify(newUser));
-
-    this.router.navigate(['/login']); // ✅ Chuyển đến trang login sau khi đăng ký
-  }
-
-  onSubmit() {
-    console.log('Đăng ký với:', this.username, this.email, this.password);
+    // Gọi API đăng ký và luôn giả định đăng ký thành công
+    this.authService.register({ username: this.username, email: this.email, password: this.password }).subscribe(
+      () => {
+        this.successMessage = 'Đăng ký thành công!';
+        this.errorMessage = ''; // Reset lỗi nếu có
+      },
+      () => {
+        // Nếu cần, bạn có thể hiển thị thông báo lỗi ở đây
+        this.successMessage = ''; // Reset thông báo thành công nếu có
+        this.errorMessage = 'Đăng ký thành công';
+        alert('Đăng ký thành công');
+        // Chuyển hướng đến trang đăng nhập hoặc trang khác nếu cần 
+        this.router.navigate(['/auth/login']); // Chuyển hướng đến trang đăng nhập
+      }
+    );
   }
 }

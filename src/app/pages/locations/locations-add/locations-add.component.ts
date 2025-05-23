@@ -146,6 +146,7 @@ export class LocationsAddComponent implements OnInit, AfterViewInit {
         (response) => {
           console.log('Thêm thành công:', response);
           this.router.navigate(['/admin/locations']);
+          alert("Thêm thành công!");
         },
         (error) => {
           console.error('Lỗi khi thêm địa điểm:', error);

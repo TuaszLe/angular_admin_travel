@@ -68,3 +68,27 @@
     background-color: #56b8b0 !important;
   }
   
+
+/* Label cho Vai trò */
+.auth-form label[for="role"] {
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Select Vai trò */
+.auth-form select[name="role"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #666;
+  margin-top: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  cursor: pointer
+}

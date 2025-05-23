@@ -2,16 +2,21 @@
   <h2>Đăng Nhập</h2>
   
   <form (ngSubmit)="onSubmit()">
-      <label for="username">Tên đăng nhập hoặc Email:</label>
-      <input type="text" id="username" [(ngModel)]="username" name="username" required>
+    <label for="username">Tên đăng nhập hoặc Email:</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username" required>
 
-      <label for="password">Mật khẩu:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+    <label for="password">Mật khẩu:</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" required>
 
-      <div class="form-actions">
-          <button type="submit" class="btn btn-save">Đăng Nhập</button>
-      </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-save">Đăng Nhập</button>
+    </div>
   </form>
-  <p>Chưa có tài khoản? <a [routerLink]="['/auth/register']">Đăng ký ngay</a></p>
+  
+  <!-- Hiển thị thông báo lỗi nếu có -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 
+  <p>Chưa có tài khoản? <a [routerLink]="['/auth/register']">Đăng ký ngay</a></p>
 </div>

@@ -2,35 +2,47 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service'; // Đường dẫn đến AuthService
 
 @Component({
   selector: 'app-login',
-  standalone: true, // Quan trọng để loadComponent hoạt động
-  imports: [CommonModule, FormsModule, RouterModule], // Thêm RouterModule vào đây
+  standalone: true, 
+  imports: [CommonModule, FormsModule, RouterModule], 
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
+  username = '';
+  password = '';
+  errorMessage = ''; // Thêm thông báo lỗi
 
-  constructor(private router: Router) {}
-
-  onLogin() {
-    const storedUser = localStorage.getItem(this.username);
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      if (user.password === this.password) {
-        this.router.navigate(['/admin/locations']); // Chuyển đến trang admin sau khi đăng nhập
-      } else {
-        this.errorMessage = 'Mật khẩu không đúng!';
-      }
-    } else {
-      this.errorMessage = 'Tài khoản không tồn tại!';
-    }
+  constructor(private authService: AuthService, private router: Router) {}
+  
+  ngOnInit(): void {
+    // Ẩn sidebar khi vào trang đăng nhập
+    document.body.classList.add('no-sidebar'); // Thêm class cho body để ẩn sidebar
   }
-  onSubmit(): void {
-    console.log('Form submitted:', { username: this.username, password: this.password });
+  onSubmit() {
+    // Kiểm tra thông tin người dùng không được để trống
+    if (!this.username || !this.password) {
+      this.errorMessage = 'Vui lòng nhập đầy đủ thông tin đăng nhập';
+      return;
+    }
+
+    // Gọi API login
+    this.authService.login({ username: this.username, password: this.password })
+      .subscribe({
+        next: (res) => {
+          // Lưu token vào localStorage nếu đăng nhập thành công
+          localStorage.setItem('token', res.token);
+          alert('Đăng nhập thành công!');
+          this.router.navigate(['/admin/locations']); // Điều hướng đến admin/locations sau khi đăng nhập thành công
+        },
+        error: (err) => {
+          // Xử lý lỗi khi đăng nhập thất bại
+          console.error('Lỗi đăng nhập:', err);
+          this.errorMessage = 'Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.';
+        }
+      });
   }
 }

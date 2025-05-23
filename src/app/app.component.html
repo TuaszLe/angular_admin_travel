@@ -1,4 +1,5 @@
-<app-sidebar></app-sidebar>
+<app-sidebar *ngIf="showSidebar"></app-sidebar>  <!-- Điều kiện hiển thị sidebar -->
+
 <div class="main-content">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet> <!-- Chỗ hiển thị nội dung của các trang -->
 </div>
