@@ -10,10 +10,14 @@ To start a local development server, run:
 ng serve
 ```
 
+<<<<<<< HEAD
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ##
 admin_travel/
+=======
+  admin_travel/
+>>>>>>> b4286458b86b7dc8c8a72a90ce4b1d5044d784db
 │-- src/
 │   ├── app/
 │   │   ├── auth/
@@ -46,4 +50,7 @@ admin_travel/
 │   │   ├── app.module.ts
 │   ├── assets/
 │   ├── styles.css
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4286458b86b7dc8c8a72a90ce4b1d5044d784db
